@@ -212,13 +212,13 @@ export const workExperience = [
   {
     id: 1,
     title: "Full stack developer",
-    desc: "Build a console selling platform for client in Romaina, and deployed it. Web app inlcudes the admin panel, profile page, lanidng page and other functionality pages, using next.js and typescript. ",
+    desc: "console selling platform where users can sell their old consoles. Web app inlcudes the admin panel, profile page, lanidng page and other functionality pages, using next.js and typescript. ",
     className: "md:col-span-2",
   },
   {
     id: 2,
     title: "Full stack developer",
-    desc: "build a 100xsol, solana based project that allow users to earn and learn solana tokens based on their learnig and the contribution to solana community",
+    desc: "100xsol, solana based project that allow users to earn and learn solana tokens based on their learnig and the contribution to solana community",
     className: "md:col-span-2",
     thumbnail: "/exp2.svg",
   },
