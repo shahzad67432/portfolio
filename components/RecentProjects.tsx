@@ -5,8 +5,10 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const RecentProjects = () => {
+  const router = useRouter();
   return (
     <div id="projects" className="py-20">
       <h1 className="heading">
@@ -18,6 +20,7 @@ const RecentProjects = () => {
           <div
             className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
             key={item.id}
+            onClick={()=>{router.push(`${item.link}`)}}
           >
             <PinContainer
               title="/github.com"

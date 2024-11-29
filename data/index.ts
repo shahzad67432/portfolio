@@ -71,6 +71,14 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "100xsol",
+    des: "solana based web 3 consumer web app, to learn and eanr solana",
+    img: "/p5.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "re.svg"],
+    link: "https://100xsol.vercel.app",
+  },
+  {
+    id: 2,
     title: "interactive LMS",
     des: "Learn new languages like pro, in game/ammusement enviornment",
     img: "/p1.png",
@@ -78,7 +86,7 @@ export const projects = [
     link: "https://next14-lms-webapp.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Websocket chat application",
     des: "Real time chat application. Seamlessly connect with colleagues and friends.",
     img: "/p2.png",
@@ -86,20 +94,12 @@ export const projects = [
     link: "https://github.com/shahzad67432/chat_WebSocket_server",
   },
   {
-    id: 3,
+    id: 4,
     title: "code editor micro service",
     des: "A REAL time code editor scalable micro service that let you write and execute code",
     img: "/p3.png",
     iconLists: ["/ts.svg", "/nodejs.svg", "/redis.svg", "/next.svg"],
     link: "https://github.com/shahzad67432/CodeStream",
-  },
-  {
-    id: 4,
-    title: "health care web app",
-    des: "BMI calculator, suggestions, healthcare routines, exercises, and much more health insights",
-    img: "/p4.png",
-    iconLists: ["/nodejs.svg", "re.svg"],
-    link: "https://healthcaresuggestions.netlify.app/",
   },
 ];
 
@@ -211,31 +211,16 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    title: "Full stack developer",
+    desc: "Build a console selling platform for client in Romaina, and deployed it. Web app inlcudes the admin panel, profile page, lanidng page and other functionality pages, using next.js and typescript. ",
     className: "md:col-span-2",
-    thumbnail: "/exp1.svg",
   },
   {
     id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
-  },
-  {
-    id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp3.svg",
-  },
-  {
-    id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
+    title: "Full stack developer",
+    desc: "build a 100xsol, solana based project that allow users to earn and learn solana tokens based on their learnig and the contribution to solana community",
     className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
+    thumbnail: "/exp2.svg",
   },
 ];
 
