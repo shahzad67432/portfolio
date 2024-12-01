@@ -7,12 +7,13 @@ export const navItems = [
 export const gridItems = [
   {
     id: 1,
-    title: "Collaborating Closely for Success",
+    title: "Muhammad Shahzad Ali",
     description: "",
-    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
-    imgClassName: "w-full h-full",
+    className:
+      "lg:col-span-3 md:col-span-4 md:row-span-4 lg:min-h-[60vh] flex justify-between items-center bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] p-8 rounded-xl",
+    imgClassName: "w-[40%] h-auto rounded-full border-4 border-green-950",
     titleClassName: "justify-end",
-    img: "/b1.svg",
+    img: "/p1.jpg",
     spareImg: "",
   },
   {
@@ -75,10 +76,18 @@ export const projects = [
     des: "solana based web 3 consumer web app, to learn and eanr solana",
     img: "/p5.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "re.svg"],
-    link: "https://100xsol.vercel.app",
+    link: "https://github.com/shahzad67432",
   },
   {
     id: 2,
+    title: "Inimax",
+    des: "console and gaming devices buying platform, users can sell and platform but the products",
+    img: "/p61.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "re.svg"],
+    link: "https://100xsol.vercel.app",
+  },
+  {
+    id: 3,
     title: "interactive LMS",
     des: "Learn new languages like pro, in game/ammusement enviornment",
     img: "/p1.png",
@@ -86,7 +95,7 @@ export const projects = [
     link: "https://next14-lms-webapp.vercel.app/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Websocket chat application",
     des: "Real time chat application. Seamlessly connect with colleagues and friends.",
     img: "/p2.png",
@@ -94,7 +103,7 @@ export const projects = [
     link: "https://github.com/shahzad67432/chat_WebSocket_server",
   },
   {
-    id: 4,
+    id: 5,
     title: "code editor micro service",
     des: "A REAL time code editor scalable micro service that let you write and execute code",
     img: "/p3.png",
