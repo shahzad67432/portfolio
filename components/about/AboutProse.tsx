@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { Marginalia } from "@/components/objects/Marginalia";
-import { cn } from "@/lib/utils";
 
 const P = "text-body text-ink-body";
 const EM = "font-medium text-ink";
@@ -9,9 +8,24 @@ const LINK =
   "text-ink underline decoration-rule underline-offset-4 transition-colors duration-200 hover:text-accent hover:decoration-accent";
 const NOTE = "lg:ml-4 lg:w-36 xl:ml-8 xl:w-40";
 
-/** Three lines of the opening paragraph, set in the display serif. */
+/**
+ * A two line drop cap on the opening paragraph, set in the display serif.
+ *
+ * The numbers are measured against this column, not guessed: body text here is
+ * 16px on a 25.6px line, and Instrument Serif puts its cap height at 0.72em. A
+ * cap that fills two lines is therefore 25.6 + 11.52 = 37.1px tall, which needs
+ * 52px of font size. The float box is the letter's line height plus its top
+ * margin, so those two are set to 49px together: under the 51.2px of two lines,
+ * which keeps the third line out of the indent, and deep enough that the letter
+ * lands on the second baseline rather than hovering above it. Nothing is merged
+ * through `cn` here, because tailwind-merge reads `text-body` and `text-[3.25rem]`
+ * as rivals of `text-ink` and drops the size, which is what produced the stranded
+ * capital this replaces.
+ */
 const DROP_CAP =
-  "first-letter:float-left first-letter:mr-3 first-letter:pt-2 first-letter:font-display first-letter:text-hero first-letter:leading-[0.72] first-letter:text-ink";
+  "first-letter:float-left first-letter:mr-2 first-letter:mt-[0.28rem] " +
+  "first-letter:font-display first-letter:text-[3.25rem] " +
+  "first-letter:leading-[0.85] first-letter:text-ink";
 
 /**
  * The long form, at 620px. One drop cap on the opening paragraph, two notes
@@ -21,7 +35,7 @@ const DROP_CAP =
 export function AboutProse({ postCount }: { postCount: number }) {
   return (
     <div className="mx-auto max-w-prose space-y-6">
-      <p className={cn(P, DROP_CAP)}>
+      <p className={`${P} ${DROP_CAP}`}>
         Lahore is home. I am in the final year of a BS in Artificial
         Intelligence at the University of Management and Technology, expected
         2027, and most of what I know arrived through shipping rather than

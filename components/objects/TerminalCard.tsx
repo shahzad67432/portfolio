@@ -31,7 +31,10 @@ export function TerminalCard({
       tilt={1.4}
       className={cn("w-[26rem] max-w-full", className)}
     >
-      <div className="shadow-rest relative overflow-hidden rounded-lg bg-[#15140F]">
+      <div
+        data-object="terminal"
+        className="shadow-rest relative overflow-hidden rounded-lg bg-[#15140F]"
+      >
         <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
           <span aria-hidden className="flex gap-1.5">
             <span className="block h-2.5 w-2.5 rounded-full bg-white/20" />

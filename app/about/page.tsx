@@ -23,10 +23,10 @@ export default function AboutPage() {
   const postCount = getPosts().length;
 
   return (
-    <div className="mx-auto w-full max-w-desk px-5 pb-8 sm:px-8">
+    <div className="mx-auto w-full max-w-desk px-5 pb-16 sm:px-8 sm:pb-24">
       <header className="pt-4 sm:pt-8">
         <AboutNotebook />
-        <div className="mx-auto mt-20 max-w-prose sm:mt-24">
+        <div className="mx-auto mt-12 max-w-prose sm:mt-16">
           <h1 className="font-display text-display leading-[1.1] text-ink sm:text-hero">
             About
           </h1>
@@ -36,15 +36,15 @@ export default function AboutPage() {
         </div>
       </header>
 
-      <section className="mt-14 sm:mt-16">
+      <section className="mt-12 sm:mt-16">
         <PullQuote />
       </section>
 
-      <section className="mt-14 sm:mt-20">
+      <section className="mt-12 sm:mt-16">
         <AboutProse postCount={postCount} />
       </section>
 
-      <section aria-labelledby="timeline-heading" className="mt-20 sm:mt-28">
+      <section aria-labelledby="timeline-heading" className="mt-16 sm:mt-24">
         <div className="mx-auto max-w-index">
           <h2
             id="timeline-heading"
@@ -56,11 +56,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto mt-20 max-w-index sm:mt-28">
+      <section className="mx-auto mt-16 max-w-index sm:mt-24">
         <ResearchCallout research={research} />
       </section>
 
-      <section className="mt-20 sm:mt-28">
+      <section className="mt-16 sm:mt-24">
         <ContactLine />
       </section>
     </div>

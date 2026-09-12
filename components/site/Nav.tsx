@@ -17,7 +17,7 @@ export function Nav() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="relative z-30">
+    <header data-site-nav className="relative z-30">
       <nav
         aria-label="Primary"
         className="mx-auto flex h-20 w-full max-w-desk items-center justify-between px-5 sm:px-8"

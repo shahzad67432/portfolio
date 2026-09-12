@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { FeaturedPost } from "@/components/blog/FeaturedPost";
 import { PostRows, type PostRow } from "@/components/blog/PostRows";
 import { formatDate, getPosts } from "@/lib/content";
+import { coverFor } from "@/lib/objects";
 
 const LEAD =
   "Things that broke while I was building, and what each one turned out to be. Every post here started as a real commit, so the dates and the fixes are the ones that actually happened.";
@@ -31,6 +32,7 @@ export default function BlogPage() {
     category: post.tags[0],
     date: post.date,
     dateLabel: formatDate(post.date),
+    cover: coverFor(post.slug),
   }));
 
   return (

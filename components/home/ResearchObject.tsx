@@ -17,9 +17,9 @@ export function ResearchObject() {
   const printed = hasPublicAsset(page.src);
 
   return (
-    <section className="pb-24 lg:pb-32">
-      <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-x-16">
-        <div className="relative mx-auto w-full max-w-sm lg:col-span-5 lg:mx-0">
+    <section className="py-8 sm:py-12 lg:py-14">
+      <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-x-12">
+        <div className="relative mx-auto w-full max-w-[15rem] sm:max-w-xs lg:col-span-5 lg:mx-0 lg:max-w-sm">
           {printed ? (
             <DeskObject id="research-page" order={1} tilt={1.8}>
               <div className="shadow-rest relative overflow-hidden rounded-sm bg-paper">
@@ -28,13 +28,15 @@ export function ResearchObject() {
                   alt={page.alt}
                   width={page.width}
                   height={page.height}
-                  sizes="(min-width: 1024px) 420px, 90vw"
+                  sizes="(min-width: 1024px) 384px, 60vw"
                   className="w-full"
                 />
+                {/* pressed across the empty foot of the page, clear of
+                    the printed venue line */}
                 <StampAccepted
                   id="research"
-                  size={230}
-                  className="absolute bottom-10 left-6"
+                  size={150}
+                  className="absolute -bottom-2 right-2"
                 />
               </div>
             </DeskObject>
@@ -49,13 +51,13 @@ export function ResearchObject() {
                 </p>
                 <StampAccepted
                   id="research"
-                  size={200}
-                  className="absolute bottom-4 left-2"
+                  size={150}
+                  className="absolute bottom-3 right-2"
                 />
               </div>
             </PaperSheet>
           )}
-          <Tape id="research" length={116} className="absolute -top-3 left-12" />
+          <Tape id="research" length={104} className="absolute -top-3 left-10" />
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">
@@ -71,9 +73,9 @@ export function ResearchObject() {
             {research.indexing.join(" and ")}.
           </p>
 
-          <dl className="mt-10">
+          <dl className="mt-8">
             {research.figures.map((figure) => (
-              <div key={figure.id} className="border-t border-rule py-5">
+              <div key={figure.id} className="border-t border-rule py-4">
                 <dt className="text-small text-ink">{figure.label}</dt>
                 <dd className="mt-2 font-mono text-title text-ink">
                   <span className="sr-only">from </span>
@@ -93,7 +95,7 @@ export function ResearchObject() {
 
           <Link
             href="/research"
-            className="mt-8 inline-flex min-h-11 items-center rounded-full border border-accent px-5 text-small text-ink transition-colors duration-200 hover:bg-accent-soft"
+            className="mt-7 inline-flex min-h-11 items-center rounded-full border border-accent px-5 text-small text-ink transition-colors duration-200 hover:bg-accent-soft"
           >
             Read the paper
             <span aria-hidden className="pl-2 text-accent">

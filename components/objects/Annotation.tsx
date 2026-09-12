@@ -46,7 +46,13 @@ const SHAPES: Record<"circle" | "underline" | "arrow", Shape> = {
 /**
  * The pen layer. A circle around a word, an underline under one, or an arrow
  * pointing at something, each drawn with stroke-dashoffset over 1.2s the first
- * time it scrolls into view. Reduced motion gets it already drawn.
+ * time it scrolls into view.
+ *
+ * Reduced motion renders it already drawn, in the first frame and not one after
+ * it: `initial={false}` tells the path to mount at its target rather than mount
+ * empty and then race to it, and globals.css pins stroke-dasharray off under the
+ * same media query so the server's markup is drawn too, before any of this has
+ * hydrated.
  */
 export function Annotation(props: AnnotationProps) {
   const { className, delay = 0, strokeWidth = 2.4 } = props;
@@ -61,6 +67,7 @@ export function Annotation(props: AnnotationProps) {
   const svg = (
     <svg
       aria-hidden
+      data-annotation
       viewBox={shape.viewBox}
       preserveAspectRatio={shape.stretch ? "none" : "xMidYMid meet"}
       fill="none"
@@ -80,7 +87,7 @@ export function Annotation(props: AnnotationProps) {
           key={d}
           d={d}
           vectorEffect="non-scaling-stroke"
-          initial={{ pathLength: 0 }}
+          initial={reduced ? false : { pathLength: 0 }}
           animate={{ pathLength: drawn ? 1 : 0 }}
           transition={
             reduced

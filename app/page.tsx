@@ -6,12 +6,16 @@ import { WorkCollage } from "@/components/home/WorkCollage";
 
 export default function HomePage() {
   return (
-    <div className="mx-auto w-full max-w-desk px-5 sm:px-8">
+    <>
+      {/* The hero runs the full width of the window: its objects live in the
+          margins outside the reading column, which only exist out there. */}
       <Hero />
-      <NowNote />
-      <WorkCollage />
-      <ResearchObject />
-      <Contact />
-    </div>
+      <div className="mx-auto w-full max-w-desk px-5 sm:px-8">
+        <NowNote />
+        <WorkCollage />
+        <ResearchObject />
+        <Contact />
+      </div>
+    </>
   );
 }

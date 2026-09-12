@@ -1,26 +1,32 @@
 import Link from "next/link";
 
-import { Handwriting } from "@/components/objects/Handwriting";
 import { PillLink } from "@/components/blog/PillLink";
 import { PostCover } from "@/components/blog/PostCover";
 import { PostMeta } from "@/components/blog/PostMeta";
+import { Handwriting } from "@/components/objects/Handwriting";
 import type { Post } from "@/lib/content";
 
 /**
- * The most recent post, given the space of an object on the desk: the print on
- * the left with its tape and its handwritten label, the words on the right.
+ * The most recent post, given the space of an object on the desk: the mounted
+ * print on the left, pushed past the column edge and taking the wider half of
+ * the grid so it carries the weight of the page, then its handwritten label,
+ * then the words on the right.
  */
 export function FeaturedPost({ post }: { post: Post }) {
   const href = `/blog/${post.slug}`;
 
   return (
-    <article className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
-      <div className="lg:-ml-10">
-        <PostCover slug={post.slug} priority sizes="(min-width: 1024px) 440px, 100vw" />
+    <article className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center lg:gap-14">
+      <div className="lg:-ml-12">
+        <PostCover
+          slug={post.slug}
+          priority
+          sizes="(min-width: 1024px) 500px, 100vw"
+        />
         <Handwriting
           id="featured-latest"
           size="sm"
-          className="mt-5 block pl-3 text-ink-meta"
+          className="mt-6 block pl-3 text-ink-meta"
         >
           the newest one
         </Handwriting>

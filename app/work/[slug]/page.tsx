@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
 import { CetusArchitecture } from "@/components/diagrams/CetusArchitecture";
+import { KairoPipeline } from "@/components/diagrams/KairoPipeline";
+import { Handwriting } from "@/components/objects/Handwriting";
 import { ExternalLink, hostOf } from "@/components/work/ExternalLink";
 import { MetaStrip } from "@/components/work/MetaStrip";
 import { WorkObject } from "@/components/work/WorkObject";
@@ -37,7 +39,8 @@ export function generateMetadata({ params }: WorkPageProps): Metadata {
 
 /**
  * The drawn figures that belong to a project, and the paragraph they sit after.
- * Kairo's pipeline is already the hero object, so it is not repeated here.
+ * Each one goes in directly under the prose that describes it, so the reader
+ * meets the drawing while the words are still in view.
  */
 const FIGURES: Record<
   string,
@@ -48,6 +51,12 @@ const FIGURES: Record<
     caption:
       "One internal API in front of Flow, Qwen and edge-tts. The worker pool reports every job back on a single stream.",
     render: () => <CetusArchitecture />,
+  },
+  kairo: {
+    after: 1,
+    caption:
+      "Writer, TTS, Aligner, EDL. The word timings edge_tts hands back are what let the Aligner check a scene against 2.25 words per second before anything is cut.",
+    render: () => <KairoPipeline />,
   },
 };
 
@@ -108,10 +117,24 @@ export default function WorkDetailPage({ params }: WorkPageProps) {
                 {paragraph}
               </p>
               {figure && figure.after === i ? (
-                <figure className="!mt-10">
-                  {figure.render()}
-                  <figcaption className="mt-4 text-meta leading-relaxed text-ink-meta">
-                    {figure.caption}
+                <figure className="!mt-12 sm:-mx-10 lg:-mx-24">
+                  <div
+                    role="group"
+                    tabIndex={0}
+                    aria-label={`${item.title} diagram, scrolls sideways on a narrow screen`}
+                    className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0"
+                  >
+                    <div className="min-w-[34rem] sm:min-w-0">
+                      {figure.render()}
+                    </div>
+                  </div>
+                  <figcaption className="mt-5 max-w-[60ch] sm:mx-10 lg:mx-24">
+                    <Handwriting
+                      id={`figure-${item.slug}`}
+                      className="text-ink-body"
+                    >
+                      {figure.caption}
+                    </Handwriting>
                   </figcaption>
                 </figure>
               ) : null}

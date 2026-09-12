@@ -39,7 +39,7 @@ export const deskAssets = {
     src: "/objects/paper-page1.jpg",
     alt: "First page of the accepted A-HQCA manuscript",
     width: 760,
-    height: 983,
+    height: 1076,
   },
 } satisfies Record<string, DeskAsset>;
 

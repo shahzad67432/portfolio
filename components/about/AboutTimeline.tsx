@@ -16,11 +16,11 @@ const KIND_LABEL: Record<TimelineKind, string> = {
  */
 export function AboutTimeline({ entries }: { entries: readonly TimelineEntry[] }) {
   return (
-    <ol className="mt-8">
+    <ol className="mt-6">
       {entries.map((entry) => (
         <li
           key={entry.id}
-          className="border-b border-dotted border-rule py-5 last:border-b-0"
+          className="border-b border-dotted border-rule py-4 last:border-b-0 sm:py-5"
         >
           <div className="flex flex-col gap-x-8 sm:flex-row sm:items-baseline sm:justify-between">
             <p className="font-display text-lead leading-[1.25] text-ink sm:text-title">

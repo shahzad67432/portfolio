@@ -29,7 +29,11 @@ function Arrow({ back = false }: { back?: boolean }) {
   );
 }
 
-/** Walk the index from inside a project. */
+/**
+ * Walk the index from inside a project. Each side names the project it goes to,
+ * and says what it is, so the link reads as a destination rather than as a
+ * direction.
+ */
 export function WorkPager({ prev, next, className }: WorkPagerProps) {
   if (!prev && !next) return null;
 
@@ -37,7 +41,7 @@ export function WorkPager({ prev, next, className }: WorkPagerProps) {
     <nav
       aria-label="Other projects"
       className={cn(
-        "grid gap-4 border-t border-rule pt-6 sm:grid-cols-2",
+        "grid gap-6 border-t border-rule pt-6 sm:grid-cols-2 sm:gap-8",
         className,
       )}
     >
@@ -48,10 +52,13 @@ export function WorkPager({ prev, next, className }: WorkPagerProps) {
         >
           <span className="flex items-center gap-2 font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
             <Arrow back />
-            Newer
+            Newer project
           </span>
           <span className="font-display text-title leading-tight text-ink transition-colors duration-200 group-hover:text-accent">
             {prev.title}
+          </span>
+          <span className="text-small text-ink-body">
+            {prev.kind}, {prev.period}
           </span>
         </Link>
       ) : (
@@ -64,11 +71,14 @@ export function WorkPager({ prev, next, className }: WorkPagerProps) {
           className="group flex min-h-16 flex-col justify-center gap-1 py-2 sm:items-end sm:text-right"
         >
           <span className="flex items-center gap-2 font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
-            Older
+            Older project
             <Arrow />
           </span>
           <span className="font-display text-title leading-tight text-ink transition-colors duration-200 group-hover:text-accent">
             {next.title}
+          </span>
+          <span className="text-small text-ink-body">
+            {next.kind}, {next.period}
           </span>
         </Link>
       ) : null}

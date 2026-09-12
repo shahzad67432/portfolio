@@ -3,7 +3,7 @@ import { SocialRow } from "@/components/site/SocialRow";
 
 export function Footer() {
   return (
-    <footer className="relative z-10 mx-auto w-full max-w-desk px-5 pb-12 pt-20 sm:px-8">
+    <footer data-site-footer className="relative z-10 mx-auto w-full max-w-desk px-5 pb-12 pt-20 sm:px-8">
       <div className="flex flex-col gap-6 border-t border-rule pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-meta uppercase tracking-[0.08em] text-ink-meta">
           © {new Date().getFullYear()} {profile.name}. {profile.location}.

@@ -12,7 +12,12 @@
     /* ink */
     --ink: 17 17 16;
     --ink-body: 67 67 67;
-    --ink-meta: 147 146 137;
+    /* #6C6B64. The old #939289 measured 2.87:1 on paper, which is nowhere near
+       4.5:1 and this token is only ever used at 12px and 14px. Same hue (54deg)
+       and the same low saturation, taken down in value until it clears AA on
+       every ground it lands on: 4.91:1 on paper, 5.12:1 on the #FBFAF6 objects,
+       4.50:1 on paper-deep. */
+    --ink-meta: 108 107 100;
 
     /* accent */
     --accent: 237 104 43;
@@ -76,6 +81,23 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+
+    /* The pen layer renders already drawn. Annotation asks for this in JS too,
+       but pathLength is compiled to these two properties, and forcing them here
+       covers the server's markup and the frames before hydration as well. */
+    [data-annotation] path {
+      stroke-dasharray: none !important;
+      stroke-dashoffset: 0 !important;
+    }
+
+    /* Hover keeps only the shadow change. The lift and the rotation are dropped
+       in DeskObject; the shadow lives on the object inside it, so it is swapped
+       from here. */
+    [data-desk-object]:hover .shadow-rest {
+      box-shadow:
+        0 2px 4px rgba(17, 17, 16, 0.07),
+        0 26px 48px -22px rgba(17, 17, 16, 0.42);
+    }
   }
 }
 
@@ -96,17 +118,6 @@
       );
   }
 
-  .paper-grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.42;
-    mix-blend-mode: multiply;
-    background-image: var(--grain-url);
-    background-size: 180px 180px;
-  }
-
   /* Contact shadow: an object resting on paper, not floating over it. */
   .shadow-rest {
     box-shadow:
@@ -122,5 +133,122 @@
 
   .rule-dotted {
     border-bottom: 1px dotted rgb(var(--rule));
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Print. The desk does not survive a laser printer: the paper ground, the
+   grain, the stain, the tape and the clips all cost toner and give nothing
+   back, and the two chrome elements are dead on paper because neither can be
+   clicked. What is left is the document, in black on white, with every link
+   carrying the address it would have gone to.
+   --------------------------------------------------------------------------- */
+@media print {
+  :root {
+    --paper: 255 255 255;
+    --paper-deep: 255 255 255;
+    --paper-shade: 255 255 255;
+    --ink: 0 0 0;
+    --ink-body: 0 0 0;
+    --ink-meta: 0 0 0;
+    --accent: 0 0 0;
+    --accent-soft: 255 255 255;
+    --highlight: 255 255 255;
+    --rule: 0 0 0;
+  }
+
+  @page {
+    margin: 18mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  /* chrome and ornament */
+  [data-site-nav],
+  [data-site-footer],
+  [data-decoration],
+  [data-skip-link],
+  video,
+  iframe {
+    display: none !important;
+  }
+
+  .paper-surface {
+    background-image: none !important;
+  }
+
+  .shadow-rest,
+  .shadow-lift {
+    box-shadow: none !important;
+  }
+
+  /* The terminal card is the one object that is not paper. Printers drop
+     background colour by default, which would leave its near-white text on
+     nothing, so it is turned inside out: black on white, inside a rule. */
+  [data-object="terminal"] {
+    background: #fff !important;
+    border: 1px solid #000;
+  }
+
+  [data-object="terminal"] *,
+  [data-object="terminal"] pre,
+  [data-object="terminal"] code {
+    color: #000 !important;
+  }
+
+  /* Links print with where they go. Internal ones are resolved against the
+     canonical host, which is the same one metadataBase carries. */
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+  }
+
+  a[href^="/"]::after {
+    content: " (muhammadshahzadali.netlify.app" attr(href) ")";
+  }
+
+  a[href^="#"]::after,
+  a[href=""]::after {
+    content: "";
+  }
+
+  a[href]::after {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.82em;
+    word-break: break-all;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  figure,
+  pre,
+  blockquote,
+  table,
+  li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
   }
 }

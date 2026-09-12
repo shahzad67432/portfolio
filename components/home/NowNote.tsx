@@ -26,9 +26,9 @@ const NOW: ReadonlyArray<{ id: string; line: string }> = [
 
 export function NowNote() {
   return (
-    <section className="pb-24 pt-8 lg:pb-32 lg:pt-16">
-      <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5 lg:col-start-1 lg:pt-12">
+    <section className="py-8 sm:py-12 lg:py-14">
+      <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-x-12">
+        <div className="lg:col-span-5 lg:col-start-1 lg:pt-8">
           <h2 className="font-display text-section text-ink">
             On the desk this month
           </h2>

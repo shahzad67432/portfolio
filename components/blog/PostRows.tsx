@@ -1,13 +1,16 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, restAngle } from "@/lib/utils";
 
 /**
- * One row of the index. The date arrives already formatted so this file, which
- * ships to the browser, never has to pull the content layer in behind it.
+ * One row of the index. The date and the cover arrive already resolved so this
+ * file, which ships to the browser, never has to pull the content layer in
+ * behind it.
  */
 export type PostRow = {
   slug: string;
@@ -18,6 +21,8 @@ export type PostRow = {
   date: string;
   /** Long form, for the reader. */
   dateLabel: string;
+  /** The post's generated cover, shown as a 64px print at the head of the row. */
+  cover: string;
 };
 
 type PostRowsProps = {
@@ -26,9 +31,12 @@ type PostRowsProps = {
 };
 
 /**
- * The index: title left, date right, a dotted rule under every row. Rows land
- * one after another as the list scrolls in, and collapse to a single opacity
- * step when the reader has asked for less motion.
+ * The index as a stack of papers: a 64px print at the head of each row, the
+ * title and its category beside it, the date at the far edge, a dotted rule
+ * under every row. Each print rests at its own small angle and straightens
+ * under the pointer, so the list reads as things set down rather than a table.
+ * Rows land one after another as the list scrolls in, and collapse to a single
+ * opacity step when the reader has asked for less motion.
  */
 export function PostRows({ rows, className }: PostRowsProps) {
   const reduced = useReducedMotion();
@@ -50,24 +58,44 @@ export function PostRows({ rows, className }: PostRowsProps) {
         >
           <Link
             href={`/blog/${row.slug}`}
-            className="group flex min-h-14 flex-col justify-center gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+            className="group flex min-h-[5.5rem] items-center gap-4 py-4 sm:gap-6"
           >
-            <span className="flex flex-col gap-1">
-              <span className="font-display text-lead text-ink transition-colors duration-200 group-hover:text-accent">
-                {row.title}
-              </span>
-              {row.category ? (
-                <span className="text-meta uppercase tracking-[0.08em] text-ink-meta">
-                  {row.category}
-                </span>
-              ) : null}
-            </span>
-            <time
-              dateTime={row.date}
-              className="shrink-0 text-small text-ink-meta sm:text-right"
+            <span
+              aria-hidden
+              style={
+                { "--tilt": `${restAngle(`row-${row.slug}`, 2.4)}deg` } as CSSProperties
+              }
+              className="shadow-rest block h-16 w-16 shrink-0 rounded-[2px] border border-rule bg-[#FBFAF6] p-[3px] transition-transform duration-200 [transform:rotate(var(--tilt))] group-hover:[transform:rotate(0deg)]"
             >
-              {row.dateLabel}
-            </time>
+              <span className="relative block h-full w-full overflow-hidden bg-paper-deep ring-1 ring-inset ring-ink/10">
+                <Image
+                  src={row.cover}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                />
+              </span>
+            </span>
+
+            <span className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+              <span className="flex min-w-0 flex-col gap-1">
+                <span className="font-display text-lead text-ink transition-colors duration-200 group-hover:text-accent">
+                  {row.title}
+                </span>
+                {row.category ? (
+                  <span className="text-meta uppercase tracking-[0.08em] text-ink-meta">
+                    {row.category}
+                  </span>
+                ) : null}
+              </span>
+              <time
+                dateTime={row.date}
+                className="shrink-0 text-small text-ink-meta sm:text-right"
+              >
+                {row.dateLabel}
+              </time>
+            </span>
           </Link>
         </motion.li>
       ))}

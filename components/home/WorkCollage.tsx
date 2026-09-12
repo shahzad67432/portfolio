@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -12,7 +13,7 @@ import {
 } from "@/components/objects";
 import { hasPublicAsset } from "@/components/home/publicAsset";
 import { getWork, type Work } from "@/lib/content";
-import { deskAssets } from "@/lib/objects";
+import { coverFor, deskAssets } from "@/lib/objects";
 import { cn } from "@/lib/utils";
 
 const CETUS_PHOTO = "/objects/cetus.png";
@@ -41,14 +42,24 @@ const MAILTRAIL_LINES = [
   "Answers come back graded.",
 ] as const;
 
-/** Where each project sits on the desk. A 12 column grid, deliberately ragged. */
-const PLACE: Record<string, string> = {
-  cetus: "lg:col-span-5 lg:col-start-1",
-  kairo: "lg:col-span-5 lg:col-start-8 lg:mt-20",
-  "cyberbrain-ids": "lg:col-span-6 lg:col-start-2",
-  mailtrail: "lg:col-span-5 lg:col-start-8 lg:mt-14",
-  "console-marketplace": "lg:col-span-4 lg:col-start-3 lg:mt-8",
-};
+/**
+ * The generated covers, printed faint on the desk under the objects: the same
+ * flow fields that head each project page, seeded from the slug.
+ */
+const WASHES: ReadonlyArray<{ slug: string; className: string }> = [
+  {
+    slug: "cetus",
+    className: "-left-16 top-24 h-64 w-64 -rotate-6 sm:h-80 sm:w-80",
+  },
+  {
+    slug: "kairo",
+    className: "-right-20 top-1/3 h-64 w-64 rotate-12 sm:h-96 sm:w-96",
+  },
+  {
+    slug: "cyberbrain-ids",
+    className: "bottom-10 left-1/3 hidden h-72 w-72 -rotate-3 lg:block",
+  },
+];
 
 type Renderer = (item: Work, order: number) => ReactNode;
 
@@ -61,23 +72,19 @@ const OBJECTS: Record<string, Renderer> = {
         src={CETUS_PHOTO}
         alt={deskAssets.cetusPolaroid.alt}
         caption="cetus-one.vercel.app"
-        className="w-full max-w-xs"
+        className="w-full max-w-[13rem]"
       />
     ) : (
       <Polaroid
         id={`work-${item.slug}`}
         order={order}
         caption="cetus-one.vercel.app"
-        className="w-full max-w-xs"
+        className="w-full max-w-[13rem]"
       />
     ),
 
   kairo: (item, order) => (
-    <GraphCard
-      id={`work-${item.slug}`}
-      order={order}
-      className="w-full max-w-md lg:max-w-none"
-    >
+    <GraphCard id={`work-${item.slug}`} order={order} className="w-full">
       <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
         The pipeline
       </p>
@@ -103,7 +110,7 @@ const OBJECTS: Record<string, Renderer> = {
       order={order}
       title="cyberbrain / live traffic"
       lines={CYBERBRAIN_LINES}
-      className="w-full max-w-md lg:max-w-none"
+      className="w-full"
     />
   ),
 
@@ -112,7 +119,7 @@ const OBJECTS: Record<string, Renderer> = {
       id={`work-${item.slug}`}
       order={order}
       label="How a test goes out"
-      className="w-full max-w-md lg:max-w-none"
+      className="w-full"
     >
       {MAILTRAIL_LINES.map((line) => (
         <p key={line}>{line}</p>
@@ -125,14 +132,14 @@ const OBJECTS: Record<string, Renderer> = {
       id={`work-${item.slug}`}
       order={order}
       crease="horizontal"
-      className="w-full max-w-sm lg:max-w-none"
+      className="w-full max-w-[13rem]"
     >
       <div className="flex h-full flex-col">
         <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
           The brief
         </p>
-        <p className="mt-4 font-display text-title text-ink">No checkout</p>
-        <p className="mt-3 text-small text-ink-body">
+        <p className="mt-3 font-display text-lead text-ink">No checkout</p>
+        <p className="mt-2 text-small text-ink-body">
           The seller submits the device. The platform quotes a price. On
           acceptance, both sides carry on over email.
         </p>
@@ -153,7 +160,7 @@ function objectFor(item: Work, order: number): ReactNode {
       id={`work-${item.slug}`}
       order={order}
       label={item.kind}
-      className="w-full max-w-md lg:max-w-none"
+      className="w-full"
     >
       {item.blurb}
     </IndexCard>
@@ -164,7 +171,27 @@ export function WorkCollage() {
   const projects = getWork();
 
   return (
-    <section className="pb-24 lg:pb-32">
+    <section className="relative py-8 sm:py-12 lg:py-14">
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        {WASHES.map((wash) => (
+          <span
+            key={wash.slug}
+            className={cn(
+              "absolute overflow-hidden rounded-full opacity-[0.16] mix-blend-multiply [mask-image:radial-gradient(closest-side,#000,transparent)]",
+              wash.className,
+            )}
+          >
+            <Image
+              src={coverFor(wash.slug)}
+              alt=""
+              fill
+              sizes="384px"
+              className="object-cover"
+            />
+          </span>
+        ))}
+      </div>
+
       <h2 className="max-w-prose font-display text-section text-ink sm:text-display">
         Five things I have shipped. Each one has a page with what it runs on and{" "}
         <Annotation kind="underline" delay={0.2}>
@@ -173,15 +200,21 @@ export function WorkCollage() {
         .
       </h2>
 
-      <ul className="mt-16 grid grid-cols-1 items-start gap-x-8 gap-y-20 lg:mt-24 lg:grid-cols-12">
+      {/* One structure per item: the object, then the title, the meta line and
+          one sentence, on a single spacing scale. The object sits in a slot of
+          fixed height and rests on its floor, so every caption in a row starts
+          on the same line. */}
+      <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 sm:mt-12 sm:gap-y-12 lg:grid-cols-2 xl:grid-cols-3">
         {projects.map((item, i) => (
-          <li key={item.slug} className={cn(PLACE[item.slug])}>
+          <li key={item.slug}>
             <Link
               href={`/work/${item.slug}`}
-              className="group block rounded-sm"
+              className="group flex h-full flex-col rounded-sm"
             >
-              {objectFor(item, i + 1)}
-              <h3 className="mt-6">
+              <div className="flex items-end lg:min-h-[19rem]">
+                {objectFor(item, i + 1)}
+              </div>
+              <h3 className="mt-5">
                 <Handwriting
                   id={`caption-${item.slug}`}
                   size="lg"
@@ -191,7 +224,7 @@ export function WorkCollage() {
                 </Handwriting>
               </h3>
               <p className="mt-1 font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
-                {item.kind} · {item.period}
+                {item.kind} &middot; {item.period}
               </p>
               <p className="mt-3 max-w-prose text-small text-ink-body">
                 {item.blurb}

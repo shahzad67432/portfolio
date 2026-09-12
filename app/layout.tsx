@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Instrument_Serif,
   Instrument_Sans,
@@ -10,6 +10,7 @@ import "./globals.css";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Grain } from "@/components/site/Grain";
+import { CoffeeStain } from "@/components/site/CoffeeStain";
 
 const display = Instrument_Serif({
   subsets: ["latin"],
@@ -54,6 +55,12 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", creator: "@shahzadexec" },
 };
 
+/** The paper token, so the browser chrome matches the ground on a phone. */
+export const viewport: Viewport = {
+  themeColor: "#F7F5F1",
+  colorScheme: "light",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -65,11 +72,13 @@ export default function RootLayout({
       <body className="paper-surface font-sans text-body text-ink-body antialiased">
         <a
           href="#main"
+          data-skip-link
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-paper focus:px-4 focus:py-3 focus:text-ink focus:shadow-rest"
         >
           Skip to content
         </a>
         <Grain />
+        <CoffeeStain />
         <Nav />
         <main id="main" className="relative z-10">
           {children}

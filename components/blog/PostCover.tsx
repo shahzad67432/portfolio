@@ -18,9 +18,12 @@ type PostCoverProps = {
 };
 
 /**
- * The post's cover, resting on the desk as a print with tape at two corners.
- * The drawing carries no information a reader needs, so it is marked decorative
- * and the title beside it does the telling.
+ * The post's cover as a mounted print: the drawing on a white card, a hairline
+ * round the image, tape at two corners and its own shadow holding it off the
+ * desk. The mount is what does the work, because the drawings are pale and a
+ * pale drawing laid straight on warm paper has no edge to find. The image
+ * carries no information a reader needs, so it is decorative and the title
+ * beside it does the telling.
  */
 export function PostCover({
   slug,
@@ -36,22 +39,24 @@ export function PostCover({
       tilt={1.8}
       className={cn("relative w-full", className)}
     >
-      <div className="shadow-rest overflow-hidden rounded-lg bg-paper-deep">
-        <Image
-          src={coverFor(slug)}
-          alt=""
-          width={1200}
-          height={750}
-          priority={priority}
-          sizes={sizes}
-          className="w-full"
-        />
+      <div className="shadow-lift rounded-sm border border-rule bg-[#FBFAF6] p-3 sm:p-4">
+        <div className="overflow-hidden rounded-[2px] bg-paper-deep ring-1 ring-inset ring-ink/10">
+          <Image
+            src={coverFor(slug)}
+            alt=""
+            width={1200}
+            height={750}
+            priority={priority}
+            sizes={sizes}
+            className="w-full"
+          />
+        </div>
       </div>
-      <Tape id={slug} length={92} className="absolute -left-3 -top-3 sm:-left-5" />
+      <Tape id={slug} length={92} className="absolute -left-3 -top-4 sm:-left-5" />
       <Tape
         id={`${slug}-foot`}
         length={92}
-        className="absolute -bottom-3 -right-3 sm:-right-5"
+        className="absolute -bottom-4 -right-3 sm:-right-5"
       />
     </DeskObject>
   );

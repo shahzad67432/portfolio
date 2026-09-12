@@ -18,6 +18,7 @@ export function CoffeeRing({ id, size = 140, className }: CoffeeRingProps) {
   return (
     <svg
       aria-hidden
+      data-decoration
       viewBox="0 0 140 140"
       width={size}
       height={size}

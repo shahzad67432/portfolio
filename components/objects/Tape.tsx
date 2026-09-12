@@ -21,6 +21,7 @@ export function Tape({ id, length = 104, angle, className }: TapeProps) {
   return (
     <span
       aria-hidden
+      data-decoration
       className={cn(
         "pointer-events-none block h-7 bg-paper-deep/80 mix-blend-multiply",
         className,

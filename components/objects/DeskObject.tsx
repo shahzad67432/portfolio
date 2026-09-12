@@ -22,6 +22,13 @@ type Props = {
 /**
  * An object resting on the desk. It arrives with an overshoot so it lands rather
  * than fades, keeps a fixed off-axis angle, and lifts toward level on hover.
+ *
+ * Reduced motion: the resting angle is a fact about the object, not a movement,
+ * so it is present in the initial frame and identical in the target frame. That
+ * leaves opacity as the only property that changes, over a single frame, and
+ * nothing translates or rotates on entry. Hover keeps the shadow change only,
+ * which is handled in globals.css off the data-desk-object hook below, because
+ * the shadow belongs to the child object rather than to this wrapper.
  */
 export function DeskObject({
   id,
@@ -37,10 +44,13 @@ export function DeskObject({
 
   return (
     <motion.div
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 14, rotate: angle * 1.6 }}
-      whileInView={
-        reduced ? { opacity: 1 } : { opacity: 1, y: 0, rotate: angle }
+      data-desk-object
+      initial={
+        reduced
+          ? { opacity: 0, y: 0, rotate: angle }
+          : { opacity: 0, y: 14, rotate: angle * 1.6 }
       }
+      whileInView={{ opacity: 1, y: 0, rotate: angle }}
       viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
       transition={
         reduced

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getPosts, getWork } from "@/lib/content";
+import { getPosts, getResearch, getWork } from "@/lib/content";
 
 /**
  * The canonical origin. Matches `metadataBase` in app/layout.tsx, and an env var
@@ -69,6 +69,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly" as const,
       priority: 0.7,
     })),
+    {
+      url: url("/research"),
+      lastModified: at(getResearch().start),
+      changeFrequency: "yearly",
+      priority: 0.8,
+    },
     {
       url: url("/about"),
       lastModified: lastAny,

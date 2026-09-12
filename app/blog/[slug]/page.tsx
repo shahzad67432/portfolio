@@ -3,9 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PostBody } from "@/components/blog/PostBody";
-import { PostCover } from "@/components/blog/PostCover";
 import { PostMeta } from "@/components/blog/PostMeta";
-import { getAdjacent, getPostBySlug, getPosts } from "@/lib/content";
+import { Polaroid } from "@/components/objects/Polaroid";
+import { formatDate, getAdjacent, getPostBySlug, getPosts } from "@/lib/content";
 import { coverFor } from "@/lib/objects";
 
 type PostPageProps = { params: { slug: string } };
@@ -56,33 +56,41 @@ export default function PostPage({ params }: PostPageProps) {
       {/* The 860px block is the desk. Text sits in the 620px column at its left
           edge from lg up, which leaves the right margin free for a written note. */}
       <div className="mx-auto w-full max-w-index">
-        <div className="mx-auto w-full max-w-prose lg:mx-0">
-          <Link
-            href="/blog"
-            className="inline-flex min-h-11 items-center gap-2 text-small text-ink-meta transition-colors duration-200 hover:text-accent"
-          >
-            <span aria-hidden>&larr;</span>
-            All posts
-          </Link>
+        <div className="lg:flex lg:items-start lg:gap-10">
+          <div className="mx-auto w-full max-w-prose lg:mx-0 lg:flex-1">
+            <Link
+              href="/blog"
+              className="inline-flex min-h-11 items-center gap-2 text-small text-ink-meta transition-colors duration-200 hover:text-accent"
+            >
+              <span aria-hidden>&larr;</span>
+              All posts
+            </Link>
 
-          <PostMeta
-            date={post.date}
-            readingMinutes={post.readingMinutes}
-            tags={post.tags}
-            className="mt-7"
-          />
-          <h1 className="mt-3 font-display text-section text-ink sm:text-display">
-            {post.title}
-          </h1>
-          <p className="mt-5 text-lead text-ink-body">{post.excerpt}</p>
+            <PostMeta
+              date={post.date}
+              readingMinutes={post.readingMinutes}
+              tags={post.tags}
+              className="mt-7"
+            />
+            <h1 className="mt-3 font-display text-section text-ink sm:text-display">
+              {post.title}
+            </h1>
+            <p className="mt-5 text-lead text-ink-body">{post.excerpt}</p>
+          </div>
+
+          {/* The cover as a print set down beside the title, not a banner across
+              the page. Below lg the margin closes up and it sits under the words. */}
+          <div className="mt-10 flex justify-center lg:mt-1 lg:shrink-0 lg:justify-end">
+            <Polaroid
+              id={`post-${post.slug}`}
+              src={coverFor(post.slug)}
+              alt=""
+              caption={formatDate(post.date)}
+              order={1}
+              className="w-52 lg:w-48"
+            />
+          </div>
         </div>
-
-        <PostCover
-          slug={post.slug}
-          priority
-          sizes="(min-width: 1024px) 860px, 100vw"
-          className="mt-10 sm:mt-12"
-        />
 
         <PostBody slug={post.slug} body={post.body} className="mt-12 sm:mt-14" />
 
@@ -94,7 +102,10 @@ export default function PostPage({ params }: PostPageProps) {
             <ul className="flex flex-col gap-8 sm:flex-row sm:justify-between sm:gap-12">
               {prev ? (
                 <li className="sm:max-w-xs">
-                  <Link href={`/blog/${prev.slug}`} className="group block">
+                  <Link
+                    href={`/blog/${prev.slug}`}
+                    className="group flex min-h-11 flex-col justify-center"
+                  >
                     <span className="text-meta uppercase tracking-[0.08em] text-ink-meta">
                       Newer
                     </span>
@@ -106,7 +117,10 @@ export default function PostPage({ params }: PostPageProps) {
               ) : null}
               {next ? (
                 <li className="sm:ml-auto sm:max-w-xs sm:text-right">
-                  <Link href={`/blog/${next.slug}`} className="group block">
+                  <Link
+                    href={`/blog/${next.slug}`}
+                    className="group flex min-h-11 flex-col justify-center"
+                  >
                     <span className="text-meta uppercase tracking-[0.08em] text-ink-meta">
                       Older
                     </span>

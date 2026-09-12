@@ -18,6 +18,7 @@ export function Paperclip({ id, size = 44, className }: FastenerProps) {
   return (
     <svg
       aria-hidden
+      data-decoration
       viewBox="0 0 36 64"
       height={size}
       width={(size * 36) / 64}
@@ -52,6 +53,7 @@ export function Pin({ id, size = 28, className }: FastenerProps) {
   return (
     <svg
       aria-hidden
+      data-decoration
       viewBox="0 0 32 32"
       height={size}
       width={size}

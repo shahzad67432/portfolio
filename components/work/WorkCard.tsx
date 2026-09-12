@@ -11,14 +11,22 @@ type WorkCardProps = {
   className?: string;
 };
 
-/** One object in the grid, with its name and dates printed underneath it. */
+/**
+ * One object in the grid, with its name and dates printed underneath it.
+ *
+ * Every cell gets the same box and the object sits centred in it, the way a
+ * contact sheet gives each frame the same window whatever is inside it. That is
+ * what keeps the names underneath on one line across the row.
+ */
 export function WorkCard({ item, order = 0, className }: WorkCardProps) {
   return (
     <Link
       href={`/work/${item.slug}`}
       className={cn("group block rounded-sm", className)}
     >
-      <WorkObject item={item} order={order} />
+      <div className="flex aspect-[7/5] w-full items-center justify-center">
+        <WorkObject item={item} order={order} />
+      </div>
       <h3 className="mt-6 font-display text-title leading-tight text-ink transition-colors duration-200 group-hover:text-accent">
         {item.title}
       </h3>

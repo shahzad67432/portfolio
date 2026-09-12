@@ -28,35 +28,48 @@ const DEPLOY_LINES = [
   "$ alembic upgrade head",
 ] as const;
 
+/**
+ * The statement owns a centred column and nothing is allowed into it. From xl
+ * every object is pinned to a page edge and capped at the distance from that
+ * edge to the column, so it cannot reach the words however wide the window
+ * gets. Between lg and xl the margins are too narrow for five objects, so two
+ * of them stand down. Below lg there are no margins and the desk stacks under
+ * the text in source order.
+ */
+const EDGE = "xl:w-[min(17rem,calc(50vw_-_29rem))]";
+const INSET = "xl:w-[min(13rem,calc(50vw_-_30rem))]";
+
 export function Hero() {
   const research = getResearch();
   const photographed = hasPublicAsset(CETUS_PHOTO);
 
   return (
-    <section className="relative isolate pb-20 pt-6 lg:min-h-[46rem] lg:pb-10 lg:pt-8">
-      <div className="relative z-10 mx-auto max-w-xl px-1 text-center lg:py-36">
+    <section className="relative isolate overflow-hidden px-5 py-8 sm:px-8 sm:py-12 lg:min-h-[33rem] lg:py-14">
+      <div className="relative z-20 mx-auto max-w-xl text-center lg:max-w-[30rem] lg:py-20 xl:max-w-xl">
         <h1 className="font-display text-display text-ink sm:text-hero">
           {profile.statement.before}
           <Highlighter>{profile.statement.marked}</Highlighter>
           {profile.statement.after}
         </h1>
-        <p className="mx-auto mt-6 max-w-[34ch] text-small text-ink-meta sm:text-body">
+        <p className="mx-auto mt-5 max-w-[34ch] text-small text-ink-meta sm:text-body">
           {profile.location}. {profile.study}.
         </p>
       </div>
 
       {/* The desk itself. A stack under the statement on a phone, scattered
-          around it from lg up, where there are margins to scatter into. */}
-      <div className="mt-12 flex flex-col items-center gap-12 lg:pointer-events-none lg:absolute lg:inset-0 lg:mt-0 lg:block">
+          into the margins from lg up, where there are margins to scatter into. */}
+      <div className="mt-10 flex flex-col items-center gap-8 sm:mt-12 sm:gap-10 lg:pointer-events-none lg:absolute lg:inset-0 lg:mt-0 lg:block">
         <TerminalCard
           id="hero-deploy"
           order={1}
           title="cetus / deploy"
           lines={DEPLOY_LINES}
-          className="w-full max-w-sm lg:pointer-events-auto lg:absolute lg:-left-6 lg:top-0 lg:w-80"
+          className={`w-full max-w-sm lg:hidden xl:pointer-events-auto xl:absolute xl:left-6 xl:top-8 xl:block ${EDGE}`}
         />
 
-        <div className="relative w-full max-w-xs lg:pointer-events-auto lg:absolute lg:right-0 lg:top-2 lg:w-72">
+        <div
+          className={`relative w-full max-w-[15rem] lg:hidden xl:pointer-events-auto xl:absolute xl:right-6 xl:top-6 xl:block ${EDGE}`}
+        >
           <PaperSheet
             id="hero-acceptance"
             order={2}
@@ -67,29 +80,32 @@ export function Hero() {
               <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
                 {research.venue}
               </p>
-              <p className="mt-4 font-display text-title text-ink">
+              <p className="mt-3 font-display text-lead text-ink">
                 A-HQCA, first author
               </p>
               <p className="mt-2 text-small text-ink-body">
                 Byzantine-robust federated learning and noise-aware QAOA for
                 healthcare.
               </p>
-              <p className="mt-auto text-meta text-ink-meta">
+              <p className="mt-3 text-meta text-ink-meta">
                 {research.proceedings}. {research.location}, {research.dates}.
               </p>
+              {/* the stamp lands on the empty foot of the sheet, never on the
+                  lines above it */}
+              <div className="mt-auto flex justify-end pt-3">
+                <StampAccepted
+                  id="hero"
+                  note="ICATCICT 2026"
+                  date="DUBAI, NOV 2026"
+                  size={124}
+                />
+              </div>
             </div>
-            <StampAccepted
-              id="hero"
-              note="ICATCICT 2026"
-              date="DUBAI, NOV 2026"
-              size={186}
-              className="absolute -bottom-1 -left-3"
-            />
           </PaperSheet>
           <Paperclip
             id="hero-sheet"
-            size={48}
-            className="absolute -top-4 left-8 z-10"
+            size={44}
+            className="absolute -top-4 left-6 z-10"
           />
         </div>
 
@@ -100,32 +116,32 @@ export function Hero() {
             src={CETUS_PHOTO}
             alt={deskAssets.cetusPolaroid.alt}
             caption="cetus-one.vercel.app"
-            className="w-52 lg:pointer-events-auto lg:absolute lg:bottom-2 lg:left-10"
+            className={`w-44 lg:pointer-events-auto lg:absolute lg:bottom-10 lg:left-4 lg:w-40 xl:bottom-12 xl:left-10 ${INSET}`}
           />
         ) : (
           <Polaroid
             id="hero-cetus"
             order={3}
             caption="cetus-one.vercel.app"
-            className="w-52 lg:pointer-events-auto lg:absolute lg:bottom-2 lg:left-10"
+            className={`w-44 lg:pointer-events-auto lg:absolute lg:bottom-10 lg:left-4 lg:w-40 xl:bottom-12 xl:left-10 ${INSET}`}
           />
         )}
 
-        <StickyNote
-          id="hero-claude"
-          order={4}
-          className="w-52 lg:pointer-events-auto lg:absolute lg:bottom-6 lg:right-20"
-        >
-          <span className="mb-2 block font-mono text-meta uppercase tracking-[0.14em] text-ink/60">
-            CLAUDE.md
-          </span>
-          Run typecheck and lint before telling me something is done.
-        </StickyNote>
+        <div className="w-44 -rotate-[7deg] lg:pointer-events-auto lg:absolute lg:bottom-14 lg:right-4 lg:w-40 xl:bottom-16 xl:right-10 xl:w-[min(12.5rem,calc(50vw_-_30rem))]">
+          <StickyNote id="hero-claude" order={4} className="w-full">
+            <span className="mb-1.5 block font-mono text-meta uppercase tracking-[0.14em] text-ink/60">
+              CLAUDE.md
+            </span>
+            <span className="block text-[0.95rem] leading-snug xl:text-lg">
+              Run typecheck and lint before telling me something is done.
+            </span>
+          </StickyNote>
+        </div>
 
         <CoffeeRing
           id="hero"
-          size={148}
-          className="hidden lg:absolute lg:bottom-32 lg:right-80 lg:block"
+          size={104}
+          className="hidden lg:absolute lg:left-8 lg:top-24 lg:block xl:left-12 xl:top-28"
         />
       </div>
     </section>

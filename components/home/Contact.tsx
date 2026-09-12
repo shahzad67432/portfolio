@@ -13,7 +13,7 @@ const SOCIALS: ReadonlyArray<{ label: string; handle: string; href: string }> = 
 
 export function Contact() {
   return (
-    <section id="contact" className="pb-8">
+    <section id="contact" className="py-8 sm:py-12 lg:py-14">
       <DeskObject
         id="contact-card"
         order={1}

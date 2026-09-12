@@ -7,7 +7,6 @@ import { ArchiveList } from "@/components/work/ArchiveList";
 import { WorkCard } from "@/components/work/WorkCard";
 import { WorkHero } from "@/components/work/WorkHero";
 import { getFeaturedWork, getWork } from "@/lib/content";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -40,7 +39,7 @@ export default function WorkIndexPage() {
 
         <ul className="mt-20 grid items-start gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
           {objects.map((item, i) => (
-            <li key={item.slug} className={cn(i === 1 && "lg:mt-12")}>
+            <li key={item.slug}>
               <WorkCard item={item} order={i} />
             </li>
           ))}
