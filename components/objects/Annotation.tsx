@@ -76,12 +76,15 @@ export function Annotation(props: AnnotationProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={cn(
-        "pointer-events-none text-accent",
+        // max-w-none opts out of the `svg { max-width: 100% }` reset in
+        // globals.css, which otherwise clamps the pen to the width of the word
+        // it is drawn around, so a circle crosses its own letters.
+        "pointer-events-none max-w-none text-accent",
         // An svg is a replaced element, so `inset-x`/`inset-y` alone only move
-        // it: width and height stay intrinsic and the circle lands off centre,
-        // cutting through the word. Size it explicitly instead.
+        // it: width and height stay intrinsic and the circle lands off centre.
+        // Size it explicitly instead.
         kind === "circle" &&
-          "absolute -left-6 -top-2 h-[calc(100%+1rem)] w-[calc(100%+3rem)]",
+          "absolute -left-5 -top-2 h-[calc(100%+1rem)] w-[calc(100%+2.5rem)]",
         kind === "underline" && "absolute inset-x-0 top-full -mt-1 h-3 w-full",
         kind === "arrow" && "h-full w-full",
       )}

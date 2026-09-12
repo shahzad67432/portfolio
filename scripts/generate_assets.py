@@ -90,7 +90,7 @@ def coffee_ring(size=520, seed="coffee") -> Image.Image:
     return img
 
 
-def flow_cover(seed: str, name: str, size=(1200, 750), accent_share=0.12):
+def flow_cover(seed: str, name: str, size=(1200, 750), accent_share=0.18):
     """
     A cover drawn as ink carried by a flow field. Same seed, same drawing, so a
     post keeps its cover forever and nobody else's post can collide with it.
@@ -104,15 +104,17 @@ def flow_cover(seed: str, name: str, size=(1200, 750), accent_share=0.12):
     img = Image.blend(img, grain, 0.18)
     draw = ImageDraw.Draw(img, "RGBA")
 
-    n_lines = 220
+    n_lines = 620
     for i in range(n_lines):
         x = gen.random() * w
         y = gen.random() * h
         use_accent = gen.random() < accent_share
         colour = ACCENT if use_accent else INK_SOFT
-        alpha = int(24 + gen.random() * (90 if use_accent else 52))
+        # Measured at 241/255 mean luminance on the first pass, which reads as a
+        # blank page on a warm ground. The ink goes on heavier now.
+        alpha = int(70 + gen.random() * (170 if use_accent else 130))
         steps = int(120 + gen.random() * 260)
-        width = 1 if not use_accent else 2
+        width = 2 if not use_accent else 3
         pts = []
         for _ in range(steps):
             gx, gy = min(int(x / 4), field.shape[1] - 1), min(int(y / 4), field.shape[0] - 1)
@@ -131,7 +133,7 @@ def flow_cover(seed: str, name: str, size=(1200, 750), accent_share=0.12):
     for _ in range(int(14 + gen.random() * 10)):
         x, y = gen.random() * w, gen.random() * h
         r = 1.5 + gen.random() * 3.5
-        draw.ellipse([x - r, y - r, x + r, y + r], fill=(*INK, 38))
+        draw.ellipse([x - r, y - r, x + r, y + r], fill=(*INK, 70))
 
     img = img.filter(ImageFilter.GaussianBlur(0.3))
     path = os.path.join(OUT, f"{name}.jpg")

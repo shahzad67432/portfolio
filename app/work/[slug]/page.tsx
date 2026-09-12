@@ -118,16 +118,27 @@ export default function WorkDetailPage({ params }: WorkPageProps) {
               </p>
               {figure && figure.after === i ? (
                 <figure className="!mt-12 sm:-mx-10 lg:-mx-24">
-                  <div
-                    role="group"
-                    tabIndex={0}
-                    aria-label={`${item.title} diagram`}
-                    className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0"
-                  >
-                    <div className="min-w-[34rem] sm:min-w-0">
-                      {figure.render()}
+                  {/* The diagram is wider than a phone. It pans instead of
+                      shrinking to illegibility, and the fade plus the note say so. */}
+                  <div className="relative">
+                    <div
+                      role="group"
+                      tabIndex={0}
+                      aria-label={`${item.title} diagram`}
+                      className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0"
+                    >
+                      <div className="min-w-[34rem] sm:min-w-0">
+                        {figure.render()}
+                      </div>
                     </div>
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-paper to-transparent sm:hidden"
+                    />
                   </div>
+                  <p className="mt-2 font-mono text-meta uppercase tracking-[0.12em] text-ink-meta sm:hidden">
+                    Drag the diagram sideways to see the rest
+                  </p>
                   <figcaption className="mt-5 max-w-[60ch] sm:mx-10 lg:mx-24">
                     <Handwriting
                       id={`figure-${item.slug}`}
