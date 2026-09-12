@@ -83,6 +83,7 @@ export function Nav() {
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
                     "flex min-h-11 items-center text-lead",
                     isActive(item.href) ? "text-accent" : "text-ink",

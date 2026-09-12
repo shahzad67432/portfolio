@@ -15,7 +15,7 @@ export function Footer() {
         <div className="flex items-center gap-4">
           <a
             href={`mailto:${profile.email}`}
-            className="text-small text-ink-body underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+            className="inline-flex min-h-11 items-center text-small text-ink-body underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
           >
             {profile.email}
           </a>

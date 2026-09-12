@@ -50,11 +50,14 @@ function Spec({
   return (
     <div
       className={cn(
-        "rounded-lg border border-rule p-5",
+        // A grid item defaults to min-width:auto, so a wide specimen such as the
+        // boarding pass sets the track width and the page scrolls sideways at
+        // 390px. min-w-0 lets the track shrink; the preview below clips.
+        "min-w-0 rounded-lg border border-rule p-5",
         wide && "sm:col-span-2",
       )}
     >
-      <div className="flex min-h-52 items-center justify-center overflow-hidden py-6">
+      <div className="flex min-h-52 min-w-0 items-center justify-center overflow-hidden py-6">
         {children}
       </div>
       <p className="mt-4 border-t border-rule pt-3 font-mono text-meta text-ink">

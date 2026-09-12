@@ -53,7 +53,9 @@ export function TerminalCard({
               return (
                 <span
                   key={`${i}-${line}`}
-                  className="block whitespace-pre-wrap break-words"
+                  // A wrapped line hangs two characters in, so a continuation
+                  // never lines up with the key column and reads as a new key.
+                  className="block whitespace-pre-wrap break-words pl-[2ch] [text-indent:-2ch]"
                 >
                   {isCommand ? (
                     <>

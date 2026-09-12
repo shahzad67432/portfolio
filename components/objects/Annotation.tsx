@@ -77,7 +77,11 @@ export function Annotation(props: AnnotationProps) {
       strokeLinejoin="round"
       className={cn(
         "pointer-events-none text-accent",
-        kind === "circle" && "absolute -inset-x-4 -inset-y-2",
+        // An svg is a replaced element, so `inset-x`/`inset-y` alone only move
+        // it: width and height stay intrinsic and the circle lands off centre,
+        // cutting through the word. Size it explicitly instead.
+        kind === "circle" &&
+          "absolute -left-6 -top-2 h-[calc(100%+1rem)] w-[calc(100%+3rem)]",
         kind === "underline" && "absolute inset-x-0 top-full -mt-1 h-3 w-full",
         kind === "arrow" && "h-full w-full",
       )}
