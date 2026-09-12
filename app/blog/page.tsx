@@ -62,13 +62,16 @@ export default function BlogPage() {
             All posts
           </h2>
           <PostRows rows={rows} className="mt-6" />
-          <p className="mt-8">
+          <p className="mt-8 text-small text-ink-meta">
             <a
-              href="/rss.xml"
-              className="inline-flex min-h-11 items-center text-small text-ink-body underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+              href="/feed"
+              className="inline-flex min-h-11 items-center text-ink-body underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
             >
-              Subscribe by RSS
+              Follow by RSS
             </a>
+            <span className="ml-2">
+              so new posts reach your reader on their own.
+            </span>
           </p>
         </section>
       </div>

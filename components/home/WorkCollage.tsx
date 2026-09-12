@@ -172,7 +172,10 @@ export function WorkCollage() {
 
   return (
     <section className="relative py-8 sm:py-12 lg:py-14">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
         {WASHES.map((wash) => (
           <span
             key={wash.slug}
