@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64">
+  <rect width="280" height="64" fill="#F7F5F1"/>
+  <path d="M8 16h13l6 6v24a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V17a1 1 0 0 1 1-1z" fill="#ED682B"/>
+  <path d="M21 16l6 6h-5a1 1 0 0 1-1-1z" fill="#C4541D"/>
+  <path d="M22.4 22.6c-1.2-1.7-4.8-2-5.8-.2-1 1.7 1.6 2.5 2.7 3.3 1.1.7 2.5 1.8 1.7 3.3-.9 1.8-4.6 1.6-6-.3"
+        stroke="#F7F5F1" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+  <text x="44" y="41" font-family="Instrument Serif, Georgia, serif" font-size="27" fill="#111110">Shahzad Ali</text>
+  <circle cx="212" cy="38" r="3.4" fill="#ED682B"/>
+</svg>
