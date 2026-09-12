@@ -20,7 +20,7 @@ export function Contact() {
         tilt={0.8}
         className="mx-auto w-full max-w-index"
       >
-        <div className="shadow-rest relative rounded-lg border border-rule bg-paper p-7 sm:p-10">
+        <div className="shadow-rest relative rounded-lg border border-rule bg-paper p-6 sm:p-10">
           <Tape id="contact-left" length={110} className="absolute -top-3 left-10" />
           <Tape
             id="contact-right"

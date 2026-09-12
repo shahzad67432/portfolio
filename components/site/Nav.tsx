@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { nav, profile } from "@/content/profile";
-import { Mark } from "@/components/site/Mark";
+import { LogoMark } from "@/components/brand/Logo";
 import { SocialRow } from "@/components/site/SocialRow";
 
 export function Nav() {
@@ -27,7 +27,7 @@ export function Nav() {
           className="flex min-h-11 min-w-11 items-center"
           aria-label={`${profile.name}, home`}
         >
-          <Mark className="h-8 w-8" />
+          <LogoMark className="h-8 w-8" />
         </Link>
 
         <ul className="hidden items-center gap-7 md:flex">

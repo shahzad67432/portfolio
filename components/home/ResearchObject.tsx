@@ -19,7 +19,7 @@ export function ResearchObject() {
   return (
     <section className="py-8 sm:py-12 lg:py-14">
       <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-x-12">
-        <div className="relative mx-auto w-full max-w-[15rem] sm:max-w-xs lg:col-span-5 lg:mx-0 lg:max-w-sm">
+        <div className="relative mx-auto w-full max-w-[13rem] sm:max-w-xs lg:col-span-5 lg:mx-0 lg:max-w-sm">
           {printed ? (
             <DeskObject id="research-page" order={1} tilt={1.8}>
               <div className="shadow-rest relative overflow-hidden rounded-sm bg-paper">
@@ -36,7 +36,7 @@ export function ResearchObject() {
                 <StampAccepted
                   id="research"
                   size={150}
-                  className="absolute -bottom-2 right-2"
+                  className="absolute bottom-3 right-3"
                 />
               </div>
             </DeskObject>
@@ -75,7 +75,7 @@ export function ResearchObject() {
 
           <dl className="mt-8">
             {research.figures.map((figure) => (
-              <div key={figure.id} className="border-t border-rule py-4">
+              <div key={figure.id} className="border-t border-rule py-3.5">
                 <dt className="text-small text-ink">{figure.label}</dt>
                 <dd className="mt-2 font-mono text-title text-ink">
                   <span className="sr-only">from </span>

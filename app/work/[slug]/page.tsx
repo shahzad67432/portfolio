@@ -121,7 +121,7 @@ export default function WorkDetailPage({ params }: WorkPageProps) {
                   <div
                     role="group"
                     tabIndex={0}
-                    aria-label={`${item.title} diagram, scrolls sideways on a narrow screen`}
+                    aria-label={`${item.title} diagram`}
                     className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0"
                   >
                     <div className="min-w-[34rem] sm:min-w-0">

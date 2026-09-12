@@ -23,7 +23,7 @@ export default function AboutPage() {
   const postCount = getPosts().length;
 
   return (
-    <div className="mx-auto w-full max-w-desk px-5 pb-16 sm:px-8 sm:pb-24">
+    <div className="mx-auto w-full max-w-desk px-5 pb-16 sm:px-8">
       <header className="pt-4 sm:pt-8">
         <AboutNotebook />
         <div className="mx-auto mt-12 max-w-prose sm:mt-16">

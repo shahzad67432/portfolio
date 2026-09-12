@@ -44,7 +44,7 @@ export function Hero() {
   const photographed = hasPublicAsset(CETUS_PHOTO);
 
   return (
-    <section className="relative isolate overflow-hidden px-5 py-8 sm:px-8 sm:py-12 lg:min-h-[33rem] lg:py-14">
+    <section className="relative isolate overflow-hidden px-5 py-8 sm:px-8 sm:py-12 lg:min-h-[40rem] lg:py-14">
       <div className="relative z-20 mx-auto max-w-xl text-center lg:max-w-[30rem] lg:py-20 xl:max-w-xl">
         <h1 className="font-display text-display text-ink sm:text-hero">
           {profile.statement.before}
@@ -58,17 +58,17 @@ export function Hero() {
 
       {/* The desk itself. A stack under the statement on a phone, scattered
           into the margins from lg up, where there are margins to scatter into. */}
-      <div className="mt-10 flex flex-col items-center gap-8 sm:mt-12 sm:gap-10 lg:pointer-events-none lg:absolute lg:inset-0 lg:mt-0 lg:block">
+      <div className="mt-8 flex flex-col items-center gap-8 sm:mt-12 sm:gap-10 lg:pointer-events-none lg:absolute lg:inset-0 lg:mt-0 lg:block">
         <TerminalCard
           id="hero-deploy"
           order={1}
           title="cetus / deploy"
           lines={DEPLOY_LINES}
-          className={`w-full max-w-sm lg:hidden xl:pointer-events-auto xl:absolute xl:left-6 xl:top-8 xl:block ${EDGE}`}
+          className={`w-full max-w-sm lg:hidden xl:pointer-events-auto xl:absolute xl:left-6 xl:top-10 xl:block ${EDGE}`}
         />
 
         <div
-          className={`relative w-full max-w-[15rem] lg:hidden xl:pointer-events-auto xl:absolute xl:right-6 xl:top-6 xl:block ${EDGE}`}
+          className={`relative w-full max-w-[15rem] lg:hidden xl:pointer-events-auto xl:absolute xl:right-6 xl:top-4 xl:block ${EDGE}`}
         >
           <PaperSheet
             id="hero-acceptance"
@@ -116,18 +116,18 @@ export function Hero() {
             src={CETUS_PHOTO}
             alt={deskAssets.cetusPolaroid.alt}
             caption="cetus-one.vercel.app"
-            className={`w-44 lg:pointer-events-auto lg:absolute lg:bottom-10 lg:left-4 lg:w-40 xl:bottom-12 xl:left-10 ${INSET}`}
+            className={`hidden lg:pointer-events-auto lg:absolute lg:left-4 lg:top-24 lg:block lg:w-40 xl:bottom-10 xl:left-10 xl:top-auto ${INSET}`}
           />
         ) : (
           <Polaroid
             id="hero-cetus"
             order={3}
             caption="cetus-one.vercel.app"
-            className={`w-44 lg:pointer-events-auto lg:absolute lg:bottom-10 lg:left-4 lg:w-40 xl:bottom-12 xl:left-10 ${INSET}`}
+            className={`hidden lg:pointer-events-auto lg:absolute lg:left-4 lg:top-24 lg:block lg:w-40 xl:bottom-10 xl:left-10 xl:top-auto ${INSET}`}
           />
         )}
 
-        <div className="w-44 -rotate-[7deg] lg:pointer-events-auto lg:absolute lg:bottom-14 lg:right-4 lg:w-40 xl:bottom-16 xl:right-10 xl:w-[min(12.5rem,calc(50vw_-_30rem))]">
+        <div className="w-44 -rotate-[7deg] lg:pointer-events-auto lg:absolute lg:bottom-16 lg:right-4 lg:w-40 xl:bottom-8 xl:right-10 xl:w-[min(12.5rem,calc(50vw_-_30rem))]">
           <StickyNote id="hero-claude" order={4} className="w-full">
             <span className="mb-1.5 block font-mono text-meta uppercase tracking-[0.14em] text-ink/60">
               CLAUDE.md
@@ -141,7 +141,7 @@ export function Hero() {
         <CoffeeRing
           id="hero"
           size={104}
-          className="hidden lg:absolute lg:left-8 lg:top-24 lg:block xl:left-12 xl:top-28"
+          className="hidden lg:absolute lg:bottom-24 lg:left-10 lg:block xl:bottom-auto xl:left-12 xl:top-[42%]"
         />
       </div>
     </section>

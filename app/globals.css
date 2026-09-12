@@ -12,12 +12,16 @@
     /* ink */
     --ink: 17 17 16;
     --ink-body: 67 67 67;
-    /* #6C6B64. The old #939289 measured 2.87:1 on paper, which is nowhere near
-       4.5:1 and this token is only ever used at 12px and 14px. Same hue (54deg)
-       and the same low saturation, taken down in value until it clears AA on
-       every ground it lands on: 4.91:1 on paper, 5.12:1 on the #FBFAF6 objects,
-       4.50:1 on paper-deep. */
-    --ink-meta: 108 107 100;
+    /* #66655F. The old #939289 measured 2.87:1 on paper, nowhere near 4.5:1, and
+       this token is only ever used at 12px and 14px. Same hue (54deg) and the
+       same low saturation, taken down in value until it clears AA against every
+       ground it actually lands on, measured off a screenshot rather than off the
+       token: 5.37:1 on paper, 5.60:1 on the #FBFAF6 objects, 4.92:1 on
+       paper-deep, 4.92:1 on the ground once the grain has multiplied into it,
+       4.60:1 on the darkest pixel the grain produces, and 4.56:1 on the
+       highlighter swatch. It is still a long way off ink-body, which is 9.09:1,
+       so the three ranks of ink still read as three ranks. */
+    --ink-meta: 102 101 95;
 
     /* accent */
     --accent: 237 104 43;

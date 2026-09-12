@@ -49,15 +49,15 @@ const MAILTRAIL_LINES = [
 const WASHES: ReadonlyArray<{ slug: string; className: string }> = [
   {
     slug: "cetus",
-    className: "-left-16 top-24 h-64 w-64 -rotate-6 sm:h-80 sm:w-80",
+    className: "-left-24 top-20 h-72 w-72 -rotate-6 sm:h-96 sm:w-96",
   },
   {
     slug: "kairo",
-    className: "-right-20 top-1/3 h-64 w-64 rotate-12 sm:h-96 sm:w-96",
+    className: "-right-24 top-1/3 h-72 w-72 rotate-12 sm:h-[28rem] sm:w-[28rem]",
   },
   {
     slug: "cyberbrain-ids",
-    className: "bottom-10 left-1/3 hidden h-72 w-72 -rotate-3 lg:block",
+    className: "bottom-4 left-1/4 hidden h-80 w-80 -rotate-3 lg:block",
   },
 ];
 
@@ -132,7 +132,7 @@ const OBJECTS: Record<string, Renderer> = {
       id={`work-${item.slug}`}
       order={order}
       crease="horizontal"
-      className="w-full max-w-[13rem]"
+      className="w-full max-w-[14rem]"
     >
       <div className="flex h-full flex-col">
         <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
@@ -177,7 +177,7 @@ export function WorkCollage() {
           <span
             key={wash.slug}
             className={cn(
-              "absolute overflow-hidden rounded-full opacity-[0.16] mix-blend-multiply [mask-image:radial-gradient(closest-side,#000,transparent)]",
+              "absolute overflow-hidden rounded-full opacity-[0.3] mix-blend-multiply [mask-image:radial-gradient(closest-side,#000,transparent)]",
               wash.className,
             )}
           >
@@ -204,14 +204,14 @@ export function WorkCollage() {
           one sentence, on a single spacing scale. The object sits in a slot of
           fixed height and rests on its floor, so every caption in a row starts
           on the same line. */}
-      <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 sm:mt-12 sm:gap-y-12 lg:grid-cols-2 xl:grid-cols-3">
+      <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-8 sm:mt-12 sm:gap-y-12 lg:grid-cols-2 xl:grid-cols-3">
         {projects.map((item, i) => (
           <li key={item.slug}>
             <Link
               href={`/work/${item.slug}`}
               className="group flex h-full flex-col rounded-sm"
             >
-              <div className="flex items-end lg:min-h-[19rem]">
+              <div className="flex items-end lg:min-h-[20rem]">
                 {objectFor(item, i + 1)}
               </div>
               <h3 className="mt-5">

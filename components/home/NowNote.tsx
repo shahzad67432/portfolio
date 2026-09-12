@@ -47,7 +47,7 @@ export function NowNote() {
             <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
               September 2026
             </p>
-            <ul className="mt-4 space-y-4">
+            <ul className="mt-4 space-y-3">
               {NOW.map((item) => (
                 <li key={item.id} className="flex items-start gap-3">
                   <span
