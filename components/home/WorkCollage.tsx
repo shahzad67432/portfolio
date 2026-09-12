@@ -134,7 +134,7 @@ const OBJECTS: Record<string, Renderer> = {
       crease="horizontal"
       className="w-full max-w-[14rem]"
     >
-      <div className="flex h-full flex-col">
+      <div className="flex min-h-full flex-col">
         <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
           The brief
         </p>

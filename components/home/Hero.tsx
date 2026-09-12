@@ -68,7 +68,7 @@ export function Hero() {
         />
 
         <div
-          className={`relative w-full max-w-[15rem] lg:hidden xl:pointer-events-auto xl:absolute xl:right-6 xl:top-4 xl:block ${EDGE}`}
+          className={`relative w-full max-w-[15rem] lg:hidden xl:pointer-events-auto xl:absolute xl:right-6 xl:top-4 ${EDGE} [@media(min-width:1400px)]:block`}
         >
           <PaperSheet
             id="hero-acceptance"
@@ -76,7 +76,7 @@ export function Hero() {
             crease="horizontal"
             className="w-full"
           >
-            <div className="flex h-full flex-col">
+            <div className="flex min-h-full flex-col">
               <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
                 {research.venue}
               </p>

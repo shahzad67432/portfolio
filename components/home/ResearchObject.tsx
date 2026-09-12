@@ -42,7 +42,7 @@ export function ResearchObject() {
             </DeskObject>
           ) : (
             <PaperSheet id="research-page" order={1} className="w-full">
-              <div className="flex h-full flex-col">
+              <div className="flex min-h-full flex-col">
                 <p className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
                   {research.venue}
                 </p>
