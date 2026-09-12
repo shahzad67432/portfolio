@@ -98,6 +98,7 @@ export function Hero() {
                   note="ICATCICT 2026"
                   date="DUBAI, NOV 2026"
                   size={124}
+                  className="overflow-visible"
                 />
               </div>
             </div>

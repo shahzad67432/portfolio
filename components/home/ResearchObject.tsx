@@ -36,7 +36,7 @@ export function ResearchObject() {
                 <StampAccepted
                   id="research"
                   size={150}
-                  className="absolute bottom-3 right-3"
+                  className="absolute bottom-3 right-3 overflow-visible"
                 />
               </div>
             </DeskObject>
@@ -52,7 +52,7 @@ export function ResearchObject() {
                 <StampAccepted
                   id="research"
                   size={150}
-                  className="absolute bottom-3 right-2"
+                  className="absolute bottom-3 right-2 overflow-visible"
                 />
               </div>
             </PaperSheet>

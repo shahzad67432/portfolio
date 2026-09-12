@@ -47,7 +47,7 @@ export function ContactLine() {
               href={item.href}
               target="_blank"
               rel="noreferrer"
-              className="group flex min-h-14 flex-col justify-center gap-1 py-3"
+              className="group flex min-h-11 flex-col justify-center gap-0.5 py-2"
             >
               <span className="font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
                 {item.note}

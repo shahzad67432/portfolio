@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-import { cn, restAngle } from "@/lib/utils";
+import { cn, restAngle, seeded } from "@/lib/utils";
 
 /**
  * One row of the index. The date and the cover arrive already resolved so this
@@ -63,17 +63,28 @@ export function PostRows({ rows, className }: PostRowsProps) {
             <span
               aria-hidden
               style={
-                { "--tilt": `${restAngle(`row-${row.slug}`, 2.4)}deg` } as CSSProperties
+                {
+                  "--tilt": `${restAngle(`row-${row.slug}`, 2.4)}deg`,
+                  "--ox": `${50 + seeded(`ox-${row.slug}`) * 18}%`,
+                  "--oy": `${50 + seeded(`oy-${row.slug}`) * 15}%`,
+                } as CSSProperties
               }
               className="shadow-rest block h-16 w-16 shrink-0 rounded-[2px] border border-rule bg-[#FBFAF6] p-[3px] transition-transform duration-200 [transform:rotate(var(--tilt))] group-hover:[transform:rotate(0deg)]"
             >
+              {/* A window onto the cover rather than the whole of it. Reduced to
+                  64px the drawing's hairlines vanish, so the print is rendered
+                  at 320px and the square shows one part of it, at the scale the
+                  featured print reads at. The part is seeded from the slug, so
+                  every row shows a different piece of its own drawing and the
+                  list does not repeat one mark five times. */}
               <span className="relative block h-full w-full overflow-hidden bg-paper-deep ring-1 ring-inset ring-ink/10">
                 <Image
                   src={row.cover}
                   alt=""
-                  fill
-                  sizes="64px"
-                  className="object-cover"
+                  width={320}
+                  height={200}
+                  sizes="320px"
+                  className="absolute left-[var(--ox)] top-[var(--oy)] max-w-none -translate-x-1/2 -translate-y-1/2"
                 />
               </span>
             </span>

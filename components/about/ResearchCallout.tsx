@@ -12,7 +12,7 @@ import type { Research } from "@/lib/content";
 export function ResearchCallout({ research }: { research: Research }) {
   return (
     <DeskObject id="about-research" tilt={0.8} order={1}>
-      <article className="shadow-rest relative rounded-sm border border-rule bg-paper px-6 py-8 sm:px-10 sm:py-10">
+      <article className="shadow-rest relative rounded-sm border border-rule bg-paper px-6 py-7 sm:px-10 sm:py-9">
         <StampAccepted
           id="about-paper"
           date="25 NOV 2026"
@@ -32,7 +32,7 @@ export function ResearchCallout({ research }: { research: Research }) {
           {research.indexing.join(" and ")}.
         </p>
 
-        <ul className="mt-8 max-w-prose">
+        <ul className="mt-6 max-w-prose">
           {research.figures.map((figure) => (
             <li
               key={figure.id}
@@ -55,7 +55,7 @@ export function ResearchCallout({ research }: { research: Research }) {
 
         <Link
           href="/research"
-          className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full border border-accent px-5 text-small text-accent transition-colors duration-200 hover:bg-accent hover:text-paper"
+          className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full border border-accent px-5 text-small text-accent transition-colors duration-200 hover:bg-accent hover:text-paper"
         >
           Read the paper
           <span aria-hidden>→</span>

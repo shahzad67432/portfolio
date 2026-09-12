@@ -14,7 +14,7 @@ export function PullQuote() {
           <Annotation delay={0.15}>nine lines</Annotation>. The week was not.
         </p>
       </blockquote>
-      <figcaption className="mt-6 font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
+      <figcaption className="mt-5 font-mono text-meta uppercase tracking-[0.14em] text-ink-meta">
         Cetus, uploads that never finished
       </figcaption>
     </figure>
