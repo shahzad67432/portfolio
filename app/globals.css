@@ -4,82 +4,123 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* surface */
+    --paper: 247 245 241;
+    --paper-deep: 239 235 227;
+    --paper-shade: 232 227 217;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    /* ink */
+    --ink: 17 17 16;
+    --ink-body: 67 67 67;
+    --ink-meta: 147 146 137;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    /* accent */
+    --accent: 237 104 43;
+    --accent-soft: 251 217 198;
+    --highlight: 252 225 156;
 
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+    /* structure */
+    --rule: 218 213 202;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    --radius: 0.5rem;
+    /* motion */
+    --ease-land: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-draw: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
-}
-
-@layer base {
   * {
-    @apply border-border !scroll-smooth;
+    box-sizing: border-box;
   }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    margin: 0;
+    background-color: rgb(var(--paper));
+    color: rgb(var(--ink-body));
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  button {
-    @apply active:outline-none;
+
+  ::selection {
+    background: rgb(var(--highlight));
+    color: rgb(var(--ink));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-@layer utilities {
-  .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
+@layer components {
+  /* The desk surface: warm paper with fibre grain and uneven light. */
+  .paper-surface {
+    background-color: rgb(var(--paper));
+    background-image:
+      radial-gradient(
+        120% 80% at 50% -10%,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0) 60%
+      ),
+      radial-gradient(
+        80% 60% at 85% 110%,
+        rgba(var(--paper-shade), 0.55) 0%,
+        rgba(255, 255, 255, 0) 70%
+      );
+  }
+
+  .paper-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.42;
+    mix-blend-mode: multiply;
+    background-image: var(--grain-url);
+    background-size: 180px 180px;
+  }
+
+  /* Contact shadow: an object resting on paper, not floating over it. */
+  .shadow-rest {
+    box-shadow:
+      0 1px 2px rgba(17, 17, 16, 0.06),
+      0 12px 28px -16px rgba(17, 17, 16, 0.35);
+  }
+
+  .shadow-lift {
+    box-shadow:
+      0 2px 4px rgba(17, 17, 16, 0.07),
+      0 26px 48px -22px rgba(17, 17, 16, 0.42);
+  }
+
+  .rule-dotted {
+    border-bottom: 1px dotted rgb(var(--rule));
   }
 }
