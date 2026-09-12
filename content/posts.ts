@@ -22,7 +22,7 @@ export const posts: readonly Post[] = [
     date: "2026-09-02",
     excerpt:
       "The document was rigorous, every rule held, and the product came out looking like a council website.",
-    readingMinutes: 2,
+    readingMinutes: 1,
     tags: ["design", "process"],
     body: [
       "I wrote a design constitution for Cetus. Thirteen hard rules, each one defensible on its own, with a long document behind them explaining why.",
@@ -37,7 +37,7 @@ export const posts: readonly Post[] = [
     date: "2026-08-12",
     excerpt:
       "The frontend redeploys itself on a push. The backend is a git clone on a box that pulls only when I ssh in.",
-    readingMinutes: 2,
+    readingMinutes: 1,
     tags: ["deploys", "infrastructure", "cetus"],
     body: [
       "Cetus deploys two different ways. The web app is on Vercel, where a push to main is the deploy. The API is a git clone on a GCP box, and it pulls when I ssh in and tell it to.",
@@ -52,7 +52,7 @@ export const posts: readonly Post[] = [
     date: "2026-07-08",
     excerpt:
       "Uploads kept failing for a week. The retry code was fine the whole time.",
-    readingMinutes: 2,
+    readingMinutes: 1,
     tags: ["cetus", "providers", "debugging"],
     body: [
       "Uploads kept failing. Not all of them, never loudly, and nothing in the logs said why. A job would go in, sit there, and never come back out.",
@@ -67,7 +67,7 @@ export const posts: readonly Post[] = [
     date: "2026-06-24",
     excerpt:
       "The details were invented for a mockup and walked straight through. A user found them before I did.",
-    readingMinutes: 2,
+    readingMinutes: 1,
     tags: ["release", "payments", "cetus"],
     body: [
       "Early on I needed a payments page to look finished, so I typed bank details into it. A bank name, an account number, none of it real. It was a mockup and I knew it was a mockup.",
@@ -82,7 +82,7 @@ export const posts: readonly Post[] = [
     date: "2026-05-20",
     excerpt:
       "A frame pair that was only half attached was quietly changing which model ran. Nothing threw, nothing logged.",
-    readingMinutes: 2,
+    readingMinutes: 1,
     tags: ["debugging", "models", "cetus"],
     body: [
       "Generations kept coming back in a style I had not asked for. I was certain the model router was broken, on the reasonable grounds that the router is the only thing that decides which model runs.",

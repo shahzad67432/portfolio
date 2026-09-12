@@ -45,10 +45,13 @@ export function TerminalCard({
 
         <pre className="overflow-x-auto px-4 py-4 font-mono text-meta leading-6 text-paper/85 sm:text-small">
           <code>
-            {lines.map((line) => {
+            {lines.map((line, i) => {
               const isCommand = line.startsWith("$ ");
               return (
-                <span key={line} className="block whitespace-pre-wrap break-words">
+                <span
+                  key={`${i}-${line}`}
+                  className="block whitespace-pre-wrap break-words"
+                >
                   {isCommand ? (
                     <>
                       <span className="text-accent">$</span>

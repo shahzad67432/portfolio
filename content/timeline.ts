@@ -73,7 +73,7 @@ export const timeline: readonly TimelineEntry[] = [
     label: "Cetus, multi-provider AI media generation",
     org: "Solo, live at cetus-one.vercel.app",
     period: "2026 to now",
-    start: "2026-01-01",
+    start: "2026-08-01",
     end: null,
     kind: "build",
     note: "Flow, Qwen and edge-tts behind one API, with credits, auth and an admin console on top.",

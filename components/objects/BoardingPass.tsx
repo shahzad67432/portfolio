@@ -102,7 +102,7 @@ export function BoardingPass({
               25 Nov 2026
             </p>
           </div>
-          <div aria-hidden className="flex h-12 items-stretch gap-[2px] sm:mt-auto">
+          <div aria-hidden className="flex h-12 items-stretch gap-0.5 sm:mt-auto">
             {bars(id).map((width, i) => (
               <span
                 key={i}

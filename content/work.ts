@@ -69,7 +69,7 @@ export const work: readonly Work[] = [
       "Cetus is a multi-provider AI media generation platform. Flow, Qwen and edge-tts sit behind one internal API, so image, video and voice generation all run from the same composer and the person using it never picks a provider.",
       "The backend is FastAPI with async SQLAlchemy 2.0 on Postgres through Supabase. Schema changes go through Alembic, jobs run in an in-process asyncio worker pool, and mypy strict is switched on for the provider layer, auth and credits, which are the three places where a wrong type costs money.",
       "The web app is Next.js App Router with Tailwind and TanStack Query. Every running job on the page reads from one Server-Sent Events stream. One connection carries all progress, so ten jobs in flight do not open ten sockets.",
-      "It is a consumer product, not an internal tool. Supabase Auth with Google OAuth as the primary path, credit based billing, usage analytics, and an admin console behind a role check.",
+      "It runs as a consumer product: end users on credits behind Supabase Auth, with Google OAuth as the primary path, credit based billing, usage analytics, and an admin console behind a role check.",
       "Web on Vercel, API on a GCP box, Postgres on Supabase in ap-southeast-1. The frontend redeploys itself on a push to main. The backend does not, and that asymmetry has its own post.",
       "The whole thing was built end to end with Claude Code inside the repo: a CLAUDE.md at the root, custom skills, hooks, subagents for search and review, and MCP servers wired in.",
     ],
