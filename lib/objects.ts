@@ -42,3 +42,19 @@ export const deskAssets = {
     height: 983,
   },
 } satisfies Record<string, DeskAsset>;
+
+/**
+ * Generative covers. Each one is drawn by scripts/generate_assets.py from a flow
+ * field seeded with the slug, so a post or project keeps its cover forever and no
+ * two seeds collide. Regenerate with: python3 scripts/generate_assets.py
+ */
+export function coverFor(slug: string): string {
+  return `/generated/cover-${slug}.jpg`;
+}
+
+export const textures = {
+  fibre: "/generated/paper-fibre.png",
+  coffeeRing: "/generated/coffee-ring.png",
+  tornEdge: "/generated/torn-edge.png",
+  stampMask: "/generated/stamp-mask.png",
+} as const;
